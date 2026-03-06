@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator med gange</title>
+</head>
+<body>
+
+<!-- 
+Funksjonen skal ta inn to tall og regne ut svaret, samt vise resultatet på siden(5 x 3 = 15).
+Den skal også brukes med flere ulike tall. 
+
+Jeg trenger:
+- input 
+- variabler
+- funksjoner(nummer 1, nummer 2 og resultat)
+-->
+
+
+<h2>Multiplikasjonskalkulator</h2>
+
+<input type="number" placeholder="Tall 1" onchange="setNumber1(this.value)">
+<input type="number" placeholder="Tall 2" onchange="setNumber2(this.value)">
+
+<button onclick="multiply()">Regn ut</button>
+
+<p id="result"></p>
+
+<script>
+
+let number1 = 0;
+let number2 = 0;
+
+function setNumber1(value) {
+    number1 = Number(value);
+}
+
+function setNumber2(value) {
+    number2 = Number(value);
+}
+
+function multiply() {
+    let result = number1 * number2;
+
+    document.getElementById("result").innerHTML =
+    number1 + " x " + number2 + " = " + result; 
+}
+ 
+
+
+</script>
+
+</body>
+</html>

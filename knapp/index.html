@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamisk knapp</title>
+</head>
+<body>
+<!-- 
+    Du skal lage en knapp, og når du trykker på den skal en ny knapp dukke opp 
+
+    Jeg trenger: 
+    - funksjon med verdier 
+    - updateView 
+    - NB. bruk console.log 
+-->
+
+
+
+ <div id="app"></div>
+
+    <script>
+
+        let buttonPressed = false; 
+            
+            function createButton(text, backgroundColor, color){
+            return /*HTML*/`
+            <button onclick="pressButton()"
+            style="background-color: ${backgroundColor}; color: ${color};">${text}
+            </button>
+            `;
+        }   
+
+         function createSecondButton(text, backgroundColor, color){
+            return /*HTML*/`
+            <button style="background-color: ${backgroundColor}; color: ${color};">${text}
+            </button>
+            `;
+        } 
+        
+        function pressButton(){
+            buttonPressed = true; 
+            console.log("Knappen er trykket på"); 
+            updateView(); 
+        }
+
+        function updateView(){
+            document.getElementById("app").innerHTML = /*HTML*/`
+
+            ${createButton("Dette er en knapp", "blue", "white")}
+
+            ${buttonPressed
+                ? createSecondButton("Ny knapp!", "pink", "black")
+                :""
+            }
+            `; 
+        }
+
+
+
+        </script>
+
+   </script>
+</body>
+</html>

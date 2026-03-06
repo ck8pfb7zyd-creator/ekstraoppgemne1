@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakter</title>
+</head>
+<body>
+      <div id="app">
+
+        <input id="characterInput" placeholder="Skriv poengsum fra 0-100">
+        <button onclick="checkCharacter()">Sjekk karakter</button>
+
+        <div id="result"></div>
+
+    </div>
+
+<!-- 
+ Brukeren skal skrive inn poeng fra 0 til 100. Og programmet skal gi følgende karakterer:
+- 90–100: A
+- 80–89: B
+- 70–79: C
+- 60–69: D
+- 0–59: F
+Det skal skrives ut hva brukeren fikk. 
+
+Jeg trenger: 
+- Funksjoner med let, else og if 
+- Sende med verdi 
+- Husk: result.innerHTML
+-->
+
+
+    <script>
+
+        function checkCharacter() {
+
+            let character = Number(document.getElementById("characterInput").value);
+
+            let result = document.getElementById("result");
+
+
+            if (character >= 90) {
+                result.innerHTML("result").innerHTML = "Du har fått karakter A"; 
+            }
+
+            else if (character >= 80) {
+                result.innerHTML = "Du har fått karakter B"; 
+            }
+            else if (character >= 70) {
+                result.innerHTML = "Du har fått karakter C"; 
+            }
+            else if (character >= 60) { 
+                result.innerHTML = "Du har fått karakter D"; 
+            }
+
+            else if (character >= 59) {
+                result.innerHTML = "Du har fått karakter F";
+        }
+    }
+
+    </script>
+
+</body>
+</html>

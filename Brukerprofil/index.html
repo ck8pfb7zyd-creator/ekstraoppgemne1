@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brukerprofil</title>
+</head>
+<body>
+    <div id="app" style="min-height: 100vh; padding: 20px;"></div>
+<!-- 
+    Brukeren skal skrive inn sitt navn, alder og favorittfarge. 
+    Dette skal skrives ut på siden og bakgrunnsfarge skal endres til favorittfargen brukeren har skrevet inn. 
+
+    Jeg må ha:
+    - input (type, onchange) m/verdier
+    - variabler
+    - Funksjoner(navn, alder, farge og endre bakgrunn). Funksjonene skal inneholde en verdi og updateProfile()
+    - UpdateView 
+    --> 
+    
+
+    <script>
+        let userName = '';
+        let age = '';
+        let favoriteColor = '';
+        let html = ''; 
+
+        updateProfile(); 
+
+        function updateView() {
+            document.getElementById('app').innerHTML = html; 
+        }
+
+        function setUserName(value) {
+            userName = value;
+            updateProfile();
+        }
+
+         function setAge(value) {
+            age = value;
+            updateProfile();
+        }
+
+        function setFavoriteColor(value) {
+            favoriteColor = value;
+            updateProfile(); 
+        }
+
+        function applyFavoriteColor(color) {
+            document.getElementById('app').style.backgroundColor = color;
+        }
+
+
+        function updateProfile() {
+        html = `
+            <h2>Brukerprofil</h2>
+
+            Navn:
+            <input onchange="setUserName(this.value)">
+            <br><br>
+
+            Alder:
+            <input type="number" onchange="setAge(this.value)">
+            <br><br>
+
+            Favorittfarge:
+            <input type="color" onchange="setFavoriteColor(this.value)">
+            <br><br>
+
+            <p>Jeg heter ${userName} og er ${age} år gammel. 
+            </p>
+            `;
+
+            applyFavoriteColor(favoriteColor);
+            updateView();
+        }
+    </script>
+</body>
+</html>

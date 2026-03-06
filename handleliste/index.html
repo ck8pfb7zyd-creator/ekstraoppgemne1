@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handleliste</title>
+</head>
+<body>
+
+    <!--
+Lag en array med varer
+eks: melk, brød, ost, egg
+Oppgaven skal inneholde loops gjennom arrayen, en li for hver vare , if og else til å markere en bestemt vare. 
+Listen skal vises på siden. 
+
+Ekstra: 
+- legg til en knapp som legger til en ny vare i arrayen og oppdaterer visningen
+
+Jeg trenger: 
+- En id
+- Variabler
+- funksjon med loops, array samt if og else 
+- hent elementer med getElementById 
+- visListe(), fremfor updateView 
+
+(jeg har prøvd meg videre med å kunne trykke på varen som skal markeres, men da krasjet koden😒)
+
+    -->
+
+    <h2>Handleliste</h2>
+    <!--Her vises listen-->
+    <ul id="liste"></ul>
+
+    <script>
+        //array med varer
+        let varer = ["melk", "brød", "ost", "egg"];
+        //variabel som lagrer hvilken vare som er valgt 
+        let valgtVare = ''; 
+
+        //kjører funksjonen første gang siden åpnes 
+        visListe(); 
+
+        function visListe() {
+            //variabel som skal samle html-koden
+            let html = ""; 
+
+            //loop som går gjennom alle varer i arrayen 
+            for (let i = 0; i < varer.length; i++) {
+
+                //hvis varen er valgt -> gjør teksten rød 
+                if (varer[i] == valgtVare) {
+                //template string (` `) gjør at man kan bruke ${}
+                    html += `<li onclick="velgVare('${varer[li]}')" style="color:red">${varer[li]}</li>`; 
+                } else {
+                    //hvis varen ikke er valgt -> vanlig tekst 
+                    html += `<li onclick="velgVare('${varer[li]}')">${varer[li]}</li>`;  
+                }
+            } 
+        //setter HTML-koden inn i <ul>-element 
+        document.getElementById("liste").innerHTML = html; 
+        }
+    //funksjon som kjøres når man klikker på en vare 
+    function velgVare(vare) {
+        //lagrer hvilken vare som ble klikket 
+        valgtVare = vare;
+
+        //oppdaterer listen slik at riktig vare blir rød 
+        visListe();
+    }
+
+    </script>
+
+</body>
+</html> 
+

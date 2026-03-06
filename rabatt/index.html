@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!--
+Brukeren skal skrive inn en pris, og pris etter rabatt skal skrives ut på skjermen. 
+
+Jeg trenger: 
+- input
+- output  
+- variabler
+- funksjoner, husk å sende med verdi
+-->
+
+
+
+<input type="number" placeholder="Pris"
+onchange="setPrice(this.value)">
+
+
+<input type="number" placeholder="Rabatt %"
+onchange="setDiscount(this.value)"> 
+
+<p id="output">Ny pris: 0 kr</p>
+
+<script>
+
+    let price = 0;
+    let discount = 0;
+
+    function setPrice(value) {
+        price = Number(value);
+        calculate();
+    }
+
+    function setDiscount(value) {
+        discount = Number(value);
+        calculate();
+}
+
+function calculate() {
+    let newPrice = price - (price * discount / 100);
+
+    document.getElementById("output").innerHTML = 
+    "Ny pris: " + newPrice + " kr"; 
+}
+
+
+</script>
+    
+</body>
+</html>

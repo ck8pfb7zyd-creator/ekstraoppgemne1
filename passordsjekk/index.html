@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    - Brukeren skal skrive inn et passord. Det riktige passordet er "hemmelig123".
+    - Når brukeren skriver inn feil passord, skal det skrives på nettsiden Feil passord, prøv igjen."
+    - Når brukeren skriver riktig passord ska det skrives "Riktig passord, velkommen inn!"
+
+    Jeg trenger:
+    - Input 
+    - To variabler
+    - En funksjon med if-setninger hvor jeg sender med verdien 
+    - UpdateView 
+    
+    -->
+
+   <div id="app"></div> 
+
+   <script>
+
+    const app = document.getElementById("app");
+
+    let correctPassword = "hemmelig123"; 
+    let message = ""; //endret messageDiv.innerHTML til en variabel.En variabel kan oppdateres veldig lett. 
+
+    function checkCorrectPassword(value) {
+        if (value === "") {
+            message = ""; 
+        } else if (value === correctPassword) {  //her endrer vi verdien til message om til stringen. Alt innenfor fnutter er en string. 
+            message = "Riktig passord, velkommen inn!";
+        } else {
+            message = "Feil passord, prøv igjen.";
+        }
+        updateView();
+    }
+
+
+    function updateView() {
+        app.innerHTML = /*HTML*/` 
+        <input type="password" onchange="checkCorrectPassword(this.value)"> 
+        <div>${message}</div> <!-- henter en variabel fra script. dollartegn og curlybrackets spesifiserer at det er en variabel. 
+            -->
+        `;
+    }
+
+    updateView(); 
+
+
+
+
+   </script>
+
+</body>
+</html>

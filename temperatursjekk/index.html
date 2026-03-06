@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>temperatursjekk</title>
+</head>
+<body>
+
+<!--
+Programmet skal spørre brukeren om temperaturen ute.
+- Hvis temperaturen er over 20 grader - "Det er varmt ute!"
+- Hvis den er mellom 5 og 20 grader (inkludert) - "Det er passe temperatur."
+- Hvis den er under 5 grader - "Det er kaldt ute!"
+
+Jeg trenger:
+- div  
+- input  
+- funksjoner, sjekk temperatur - if og else 
+-->
+
+    <div id="app">
+        <input id="temperatureInput" placeholder="Skriv temperatur">
+        <button onclick="checkTemp()">Sjekk temperatur</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+
+        function checkTemp() {
+            let temperature = document.getElementById("temperatureInput").value;
+
+            if (temperature > 20) {
+                document.getElementById("result").innerHTML = "Det er varmt ute!"; 
+            }
+
+            else if (temperature >= 5) {
+                document.getElementById("result").innerHTML = "Det er passelig ute!"; 
+            }
+            else { 
+                document.getElementById("result").innerHTML = "Det er kaldt ute!"; 
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tall-liste</title>
+</head>
+<body>
+
+    <!--
+    Lag en liste med tall der funksjonen skal bruke for-loop for å lage tallene fra 1-10. 
+    Tallene skal vises på siden(eks ul eller div)
+    Skrive ut tekst som forteller om tallet er oddetall eller partall. 
+
+    Jeg trenger: 
+    - id 
+    - funksjon med let, for-loop samt if og else 
+    - Hente elementet med getElementById 
+
+    -->
+
+    <h2>Liste med tall</h2>
+
+    <div id="resultat"></div>
+
+    <script>
+        
+        //funksjon som lager og viser tallene 
+        function visTall() {
+            let html = ''; //variabel som skal samle HTML-innholdet
+
+
+        //for-loop som teller fra 1-10
+            for (let i = 1; i <= 10; i++) {
+                if (i % 2 == 0) { //sjekker om tallet er partall, prosent betyr modulus(resten etter divisjon), hvis resten er 0 -> partall 
+                    //legger til tekst i html-variabelen 
+                    html += "<div>" + i + "er partall</div>"; 
+                } else { 
+                    //hvis tallet ikke er partall -> oddetall 
+                    html += "div>" + i + "er oddetall</div>"; 
+
+                }
+            } 
+        //skriver hele resultatet til siden 
+        document.getElementById("resultat").innerHTML = html; 
+        }
+    //kjører funksjonen når siden lastes 
+    visTall();
+
+
+    </script>
+
+
+    
+</body>
+</html>

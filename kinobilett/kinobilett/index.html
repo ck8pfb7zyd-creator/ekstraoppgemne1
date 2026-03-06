@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinobilett</title>
+</head>
+
+<body>
+    <!-- 
+Brukeren skal skrive inn alderen sin
+- Hvis brukeren er under 3 år er billetten gratis.
+- Hvis alderen er mellom 3 og 12 år koster billetten 50 kr.
+- Hvis alderen er over 12 år  koster billetten 100 kr.
+Det skal skrives ut hvor mye biletten koster når brukeren skriver inn alderen sin og trykker enter.
+
+Jeg trenger: 
+- input 
+- variabler
+- funksjoner med verdi, samt if og else-setninger
+- updateView
+
+-->
+
+
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById("app");
+
+        let age = 0;
+        let price = 0;
+
+        function checkAge(newAge) {
+            age = newAge;
+            if (age < 3) {
+                price = 0;
+            } else if (age >= 3 && age <= 12) {
+                price = 50;
+            } else {
+                price = 100;
+            }
+
+            updateView();
+        }
+
+        function updateView() {
+            app.innerHTML = ` 
+        <input onchange="checkAge(this.value)"> 
+        <p>${price}</p>
+        `;
+        }
+        updateView(); 
+    </script>
+
+</body>
+
+</html>
