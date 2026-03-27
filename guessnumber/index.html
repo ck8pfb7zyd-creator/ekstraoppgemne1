@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess number</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <h1>Gjett tall mellom 1 og 10</h1>
+
+    <input type="number" id="guessInput">
+    <button onclick="guess()">Gjett det riktige tallet</button>
+
+    <p id="message"></p>
+    <p id="tries"></p>
+    <p id="attempts"></p> 
+
+    <!--
+    Programmet skal lage et tilfeldig tall fra 1-10 og brukeren skal gjette det tilfeldige tallet. 
+
+    Det skal:
+    - Brukes while-loop som fortsetter til riktig tall er gjettet
+    - If/else for å gi beskjed om tallet er for høyt eller lavt
+    - Vise antall ganger brukeren har gjettet
+    -->
+</body>
+
+<script>
+
+    function generateRandomNumber() {
+        return Math.floor(Math.random() * 10) + 1; 
+    }
+
+    let randomNumber = generateRandomNumber(); 
+    let tries = 0;
+    let guesses = []; 
+
+    function guess() {
+        let input = document.getElementById("guessInput").value;
+        let numberGuessed = Number(input); 
+
+        guesses.push(numberGuessed); 
+
+        tries++; 
+
+        if (numberGuessed === randomNumber) {
+            document.getElementById("message").innerText = "Riktig!";
+            document.getElementById("tries").innerText = "Forsøk" + tries; 
+
+            visGjetninger(); 
+
+            resetGame(); 
+        }
+        else if (numberGuessed < randomNumber) {
+            document.getElementById("message").innerText = "For lavt!"; 
+    } else {
+        document.getElementById("message").innerText = "For høyt!"; 
+    }
+
+    document.getElementById("tries").innerText = "Forsøk " + tries; 
+    visGjetninger(); 
+} 
+
+function visGjetninger() {
+    let tekst = "Du har gjettet: "; 
+
+    for (let i = 0; i < guesses.length; i ++) {
+        tekst += guess[i] + " "; 
+    }
+
+    document.getElementById("gusses").innerText = tekst; 
+
+}
+
+function resetGame() {
+    randomNumber = generateRandomNumber(); 
+    tries = 0;
+    guesses = []; 
+}
+
+</script>
+</html>

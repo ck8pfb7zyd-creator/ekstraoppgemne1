@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budsjettplanlegger</title>
+</head>
+<body>
+    
+    <div id="app"></div>
+
+    <script>
+
+        //Model
+        let model = {
+            inntekter: [],
+            utgifter: []
+        };
+
+        //View
+        vis();
+
+        function vis() {
+            document.getElementById("app").innerHTML = `
+            <h2>Budsjett</h2>
+
+            <h3>Legg til inntekt</h3>
+            <input id="inntektTekst" placeholder="Beskrivelse">
+            <input id="inntektBeløp" type="number" placeholder="Beløp">
+            <button onclick="leggTilInntekt()">Legg til</button> 
+
+            <h3>Legg til utgift</h3>
+            <input id="utgiftTekst" placeholder="Kategori">
+            <input id="utgiftBeløp" type="number" placeholder="Beløp">
+            <button onclick="leggTilUtgift()">Legg til</button> 
+
+            <h3>Inntekter</h3>
+            ${model.inntekter.map(i => `
+            <div>${i.tekst}: ${i.beløp} kr</div>
+            `).join("")}
+
+            <h3>Utgifter</h3>
+            ${model.utgifter.map(u => `
+            <div>${u.tekst}: ${u.beløp} kr</div>
+            `).join("")}
+
+            <h3>Sum inntekter: ${sum(model.inntekter)}</h3>
+            <h3>Sum utgifter: ${sum(model.utgifter)}</h3>
+            <h2>Saldo: ${sum(model.inntekter) - sum(model.utgifter)}</h2>
+            `; 
+        }
+
+        //Controller
+        function leggTilInntekt() {
+            let tekst = document.getElementById("inntektTekst").value; 
+            let beløp = Number(document.getElementById("inntektBeløp").value); 
+
+            model.inntekter.push({tekst: tekst, beløp: beløp});
+
+            vis(); 
+        }
+
+        function leggTilUtgift() {
+            let tekst = (document.getElementById("utgiftTekst").value); 
+            let beløp = Number(document.getElementById("utgiftBeløp").value); 
+
+            model.utgifter.push({tekst: tekst, beløp: beløp});
+
+            vis(); 
+        }
+
+        function sum(liste) {
+            let total = 0;
+            for (let item of liste) {
+                total += item.beløp;
+            }
+            return total;
+        }
+
+
+
+    </script>
+</body>
+</html>

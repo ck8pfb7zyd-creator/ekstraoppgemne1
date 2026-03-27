@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app"></div>
+
+    <script>
+
+        //Model
+        let model = {
+            spørsmål: [
+                {
+                    tekst:"Hvor gammel er du?",
+                    alternativer: ["15-25", "25-35", "35-45"]
+                },
+
+                { 
+                    tekst: "Driver du med noe idrett?",
+                    alternativer: ["Ja", "Nei", "Har andre hobbyer"]
+                },
+
+                {
+                    tekst: "Hvor ofte er du aktiv?",
+                    alternativer: ["1-2 ganger i uka", "3-4 dager i uka", "5-6 dager i uka", "Hver dag"]
+
+                }
+            ], 
+            index: 0,
+            svar: []
+
+            
+        }; 
+
+        vis(); 
+
+        //View
+        function vis() {
+            if (model.index >= model.spørsmål.length) {
+                visResultat();
+                return; 
+            }
+
+            let spørsmål = model.spørsmål[model.index]; 
+
+            document.getElementById("app").innerHTML = `
+            <h2>${spørsmål.tekst}</h2>
+            ${spørsmål.alternativer.map((alt, i) => `
+            <button onclick="velgSvar(${i})">${alt}</button>
+            `).join("")}
+            `; 
+
+        
+        }
+
+        //Controller 
+        function velgSvar(i) {
+            model.svar[model.index] = i;
+            model.index++;
+
+            vis(); 
+            
+        }
+
+        function visResultat() {
+            let html = "<h2>Resultat</h2>"; 
+
+            for (let i = 0; i < model.spørsmål.length; i++) {
+                let spm = model.spørsmål[i];
+                let svarIndex = model.svar[i]; 
+
+                html += `
+                <p>
+                    ${spm.alternativer[svarIndex]}</br>
+                
+                </p>
+
+                `; 
+            }
+
+            document.getElementById("app").innerHTML = html; 
+        
+        }
+
+
+    </script>
+   
+
+</body>
+</html>

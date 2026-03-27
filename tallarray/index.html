@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tall i en array</title>
+</head>
+<body>
+
+    <h2>Summering av tall i array</h2>
+
+    <div id="app"></div>
+    <div id="sumResult"></div>
+
+    <script>
+
+        let numbers = [5, 12, 8, 20, 3]; 
+
+        function calculateSum() {
+            let sum = 0; 
+
+            //Går gjennom arrayen 
+            for (let i = 0; i < numbers.length; i++) {
+                sum += numbers[i]; 
+            }
+
+            let message = "Summen av tallene i arrayen er " + sum; 
+
+            //Sjekker om over eller under 30
+            if (sum > 30) {
+                message += " (Summen er da over 30)";
+            } else {
+                message += " (Summen er 30 eller mindre)"; 
+            }
+            document.getElementById("sumResult").innerText = message;  
+        }
+
+        //Kjører funksjonen 
+        calculateSum(); 
+
+    </script>
+
+</body>
+
+
+</html>

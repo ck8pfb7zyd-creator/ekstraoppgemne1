@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Handleliste</title>
 </head>
+
 <body>
 
     <!--
@@ -22,54 +24,86 @@ Jeg trenger:
 - funksjon med loops, array samt if og else 
 - hent elementer med getElementById 
 - visListe(), fremfor updateView 
-
-(jeg har prøvd meg videre med å kunne trykke på varen som skal markeres, men da krasjet koden😒)
-
-    -->
+-->
 
     <h2>Handleliste</h2>
     <!--Her vises listen-->
+
+    <!--input hvor brukeren legger varen til i listen-->
+    <input id="nyVare">
+    <!--knapp som legger varen til i listen-->
+    <button onclick="leggTilVare()">Legg til vare</button>
+
+    <!--Her vises listen-->
     <ul id="liste"></ul>
+
 
     <script>
         //array med varer
         let varer = ["melk", "brød", "ost", "egg"];
         //variabel som lagrer hvilken vare som er valgt 
-        let valgtVare = ''; 
+        let valgteVarer = [];
+
 
         //kjører funksjonen første gang siden åpnes 
-        visListe(); 
+        visListe();
 
         function visListe() {
             //variabel som skal samle html-koden
-            let html = ""; 
+            let html = "";
 
             //loop som går gjennom alle varer i arrayen 
             for (let i = 0; i < varer.length; i++) {
 
-                //hvis varen er valgt -> gjør teksten rød 
-                if (varer[i] == valgtVare) {
-                //template string (` `) gjør at man kan bruke ${}
-                    html += `<li onclick="velgVare('${varer[li]}')" style="color:red">${varer[li]}</li>`; 
-                } else {
-                    //hvis varen ikke er valgt -> vanlig tekst 
-                    html += `<li onclick="velgVare('${varer[li]}')">${varer[li]}</li>`;  
-                }
-            } 
-        //setter HTML-koden inn i <ul>-element 
-        document.getElementById("liste").innerHTML = html; 
-        }
-    //funksjon som kjøres når man klikker på en vare 
-    function velgVare(vare) {
-        //lagrer hvilken vare som ble klikket 
-        valgtVare = vare;
+                if (valgteVarer.includes(varer[i])) {
 
-        //oppdaterer listen slik at riktig vare blir rød 
-        visListe();
-    }
+                    html += /*HTML*/ `<li onclick="velgVare('${varer[i]}')" style="color:red;">${varer[i]}</li>`;
+
+                } else {
+                    html += /*HTML*/ `<li onclick="velgVare('${varer[i]}')">${varer[i]}</li>`;
+
+                }
+            }
+            //setter HTML-koden inn i <ul>-element 
+            document.getElementById("liste").innerHTML = html;
+        }
+
+        //tar inn en vare og sjekker om den er i valgt vare-lista 
+        //hvis den er det skal den fjernes, hvis ikke skal den legges til 
+        function velgVare(vare) {
+
+            console.log(vare);
+            console.log(valgteVarer);
+
+            if (valgteVarer.includes(vare)) {
+
+                valgteVarer.splice(valgteVarer.indexOf(vare), 1);
+
+            } else {
+                valgteVarer.push(vare);
+            }
+
+            visListe();
+
+        }
+
+
+        function leggTilVare() {
+            //henter verdien fra input-feltet
+            let ny = document.getElementById("nyVare").value;
+
+            //legger varen inn i arrayen 
+            varer.push(ny);
+
+            //oppdaterer listen 
+            visListe();
+
+            document.getElementById("nyVare").value = "";
+        }
+
 
     </script>
 
 </body>
-</html> 
 
+</html>

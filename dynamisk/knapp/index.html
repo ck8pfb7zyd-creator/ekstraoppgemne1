@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Dynamiske knapper</h2>
+    
+    
+    <div id="buttons"></div>
+    <div id="result"></div>
+
+    <script>
+
+        //Henter divene fra HTML
+        let buttonsDiv = document.getElementById("buttons");
+        let resultDiv = document.getElementById("result"); 
+
+        //Lager 3 knapper med en loop
+        for (let i = 1; i <= 3; i++) {
+            buttonsDiv.innerHTML += `
+            <button onclick="buttonClicked(${i})">
+                Knapp ${i}
+                </button>
+                `; 
+        }
+
+        //Funksjonen kjører når en knapp blir trykket  og sjekker hvilken knapp som er trykket 
+        function buttonClicked(number) {
+            if (number === 1) {
+                resultDiv.innerText = "Du trykket på knapp 1";
+            } else if (number === 2) {
+                resultDiv.innerText = "Du trykket på knapp 2"; 
+            } else {
+                resultDiv.innerText = "Du trykket på knapp 3"; 
+            }
+        }
+
+
+
+ 
+
+    </script>
+</body>
+</html>

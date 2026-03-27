@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate my cat</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+
+        //Model
+
+        let model = {
+            bruker: null,
+            brukere: [],
+
+            katter: [
+                {navn: "Milo", rase: "Siameser", beskrivelse: "Hannkatt, 4 år", ratings: []},
+                {navn: "Lucy", rase: "Bengal", beskrivelse: "Hunkatt, 2 år", ratings: []}
+             ]
+
+        }; 
+
+        //View
+        vis();
+
+        function vis(){
+            if (!model.bruker) {
+                visLogIn();
+            } else {
+                visApp();
+            }  
+         }
+
+        function visLogin() {
+            document.getElementById("app").innerHTML = `
+            <h2>Login / Registrer</h2> 
+            <input id="brukernavn" placeholder="Navn">
+            <button onclick="logInn()">Logg inn</button> 
+            `; 
+        }
+
+        function visApp() {
+            document.getElementById("app").innerHTML = `
+            <h2>Velkommen ${model.bruker}</h2> 
+
+            <h3>Legg til katt</h3>
+            <input id="navn" placeholder="Navn"> 
+            <input id="rase" placeholder="Rase">
+            <input id="beskrivelse" placeholder="Beskrivelse"> 
+            <button onclick="leggTilKatt()">Legg til</button>
+
+            <h3>Katter</h3>
+            ${model.katter.map((katt, index) => `
+            <div style="border:1px solid black; margin:10px; padding:10px;">
+            <b>${katt.navn}</br> (${katt.rase}<br>
+            ${katt.beskrivelse}</br> 
+            Snitt: ${snitt(katt)}<br>
+
+            ${[1,2,3,4,5].map(t => `
+            <button onclick="rate(${index}, ${t}">${t}</button> 
+            `).join("")} 
+            </div>
+            `).join("")} 
+            `; 
+         }
+
+          //Controller
+          function logInn() {
+            let navn = document.getElementById("brukernavn").value; 
+
+            model.bruker = navn;
+            model.brukere.push(navn); 
+
+            vis(); 
+          }
+
+          function leggTilKatt() {
+            let navn = document.getElementById("navn").value; 
+            let rase = document.getElementById("rase").value;
+            let beskrivelse = document.getElementById("beskrivelse").value; 
+
+            model.katter.push({
+                navn: navn, 
+                rase: rase,
+                beskrivelse: beskrivelse,
+                ratings: []
+
+            }); 
+
+            vis(); 
+        }
+
+        function rate(index,score) {
+            model.katter[index].ratings.push(score); 
+            vis(); 
+
+        }
+
+        function snitt(katt) {
+            if (katt.ratings.length === 0) return 0; 
+
+            let sum = 0; 
+            for (let r of katt.ratings) {
+                sum+= r; 
+            }
+            return (sum / katt.ratings.length).toFixed(1); 
+        }
+
+    </script>
+    
+</body>
+</html>
+
